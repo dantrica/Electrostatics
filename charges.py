@@ -156,7 +156,7 @@ class charges:
       
     def line(self, rp, L, ld, n=100):
         v = 0
-        dL = L/(n-1)
+        dL = float(L)/(n-1)
         qo = ld*L/n
         rq = np.zeros((n, 3))
         q = np.zeros(n)
