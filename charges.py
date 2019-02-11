@@ -171,3 +171,33 @@ class charges:
         self.plot_E(rp, vec_Ep)
         plt.show()
         return q, rq, ri, mag_ri, uni_ri, vec_E, vec_Ep, mag_Ep
+
+    def cylinder(self, rp, R, L, ld, n=100):
+        s1 = 0
+        p = 2*np.pi*R
+        qo = ld*p/n
+        if R < L:
+            n2 = int(n*0.1)
+            dL = float(L)/(n/n2-1)
+        else:
+            n2 = int(n*0.25)
+            dL = float(L)/(n/n2-1)
+        q = qo*np.ones(n)
+        rq = []
+        while s1 < int(n/n2):
+            s2 = 0
+            rqq = []        
+            while s2 < n2:
+                phi = s2*2*np.pi/n2
+                rqq = np.array([R*np.cos(phi), R*np.sin(phi), s1*dL])
+                rq.append(rqq)
+                s2 += 1
+            s1 += 1
+        rq = np.array(rq)
+        ri, mag_ri, uni_ri, vec_E, vec_Ep, mag_Ep = self.e_field(rp=rp, rq=rq, q=q, n=n)
+        self.plot_reference(rp, rq)
+        self.plot_charges(rp, rq, q, n)
+        self.plot_vector(rq, ri, n)
+        self.plot_E(rp, vec_Ep)
+        plt.show()
+        return q, rq, ri, mag_ri, uni_ri, vec_E, vec_Ep, mag_Ep
