@@ -117,7 +117,6 @@ class charges:
         ax.set_title('$E_p = $'+str(vec_Ep[0])+' $i$ +'+str(vec_Ep[1])+' $j$ +'+str(vec_Ep[2])+' $k$'+str( )+' $[V/m]$')
         return
     
-    
     def punctual_charges(self, rp, n):
         l = 0
         q = np.zeros(n)
@@ -133,8 +132,7 @@ class charges:
         self.plot_E(rp, vec_Ep)
         plt.show()
         return q, rq, ri, mag_ri, uni_ri, vec_E, vec_Ep, mag_Ep
-      
-    
+          
     def ring(self, rp, R, ld, n=100):
         s = 0
         p = 2*np.pi*R
